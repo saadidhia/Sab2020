@@ -48,11 +48,13 @@ function* loginWithEmailPassword({ payload }) {
             "password": password
         }) 
         // Hard coded values smell. But this should do it. 
-        
+        console.log(loginUser);
         if (!loginUser.message) {
-            localStorage.setItem('user_id', loginUser.user.uid);
-            localStorage.setItem('token', loginUser.token);
+           // localStorage.setItem('user_id', loginUser.user.uid);
+            localStorage.setItem(ACCESS_TOKEN, loginUser.accessToken);
+            localStorage.setItem('tokenType',loginUser.tokenType)
             yield put(loginUserSuccess(loginUser.user));
+            
             history.push('/');
         } else {
             yield put(loginUserError(loginUser.message));
@@ -88,7 +90,7 @@ function* registerWithEmailPassword({ payload }) {
 
         if (!registerUser.message) {
             localStorage.setItem('user_id', registerUser.user.uid);
-            localStorage.setItem('token', registerUser.token);
+            localStorage.setItem(ACCESS_TOKEN, registerUser.token);
             yield put(registerUserSuccess(registerUser.user));
             yield put(loginUserSuccess(registerUser.user));
             history.push('/')
@@ -117,9 +119,10 @@ function* logout({ payload }) {
     const { history } = payload
     try {
         // yield call(logoutAsync, history);
-        localStorage.removeItem('user_id');
-        localStorage.removeItem('token');
+     //   localStorage.removeItem('user_id');
+       // localStorage.removeItem('token');
         localStorage.removeItem(ACCESS_TOKEN);
+        history.push('/user/login')
     } catch (error) {
     }
 }

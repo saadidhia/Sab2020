@@ -15,7 +15,7 @@ import {
 } from '../actions';
 
 const INIT_STATE = {
-    user: localStorage.getItem('user_id'),
+    user: localStorage.getItem('accessToken'),
     forgotUserMail: '',
     newPassword: '',
     resetPasswordCode: '',
@@ -28,7 +28,7 @@ export default (state = INIT_STATE, action) => {
         case LOGIN_USER:
             return { ...state, loading: true, error: '' };
         case LOGIN_USER_SUCCESS:
-            return { ...state, loading: false, user: action.payload.uid, error: '' };
+            return { ...state, loading: false,/* user: action.payload.uid*/user:action.payload.token, error: '' };
         case LOGIN_USER_ERROR:
             return { ...state, loading: false, user: '', error: action.payload.message };
         case FORGOT_PASSWORD:

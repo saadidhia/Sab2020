@@ -36,10 +36,11 @@ export const isDarkSwitchActive = true;
 export const themeColorStorageKey="__theme_color";
 export const themeRadiusStorageKey = "__theme_radius";
 export const isDemo = false;
-
-
+export const API_CLIENT_ADD = 'http://localhost:8080/clients/add';
+export const  PRPFILE_IMAGE = 'profileImage.png'
 export const API_BASE_URL = 'http://localhost:8080';
 export const ACCESS_TOKEN = 'accessToken';
+export const API_CLIENT_GET="http://localhost:8080/clients/all";
 
 export const OAUTH2_REDIRECT_URI = 'http://localhost:3000/oauth2/redirect'
 

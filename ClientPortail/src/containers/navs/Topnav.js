@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
+
+import PROFILE_IMAGE from '../../img/profileImage.png'
 import {
   UncontrolledDropdown,
   DropdownItem,
@@ -30,18 +32,33 @@ import { MobileMenuIcon, MenuIcon } from "../../components/svg";
 import TopnavEasyAccess from "./Topnav.EasyAccess";
 import TopnavNotifications from "./Topnav.Notifications";
 import TopnavDarkSwitch from "./Topnav.DarkSwitch";
-
+import {getCurrentUser} from '../../redux/auth/auth.js'
 import { getDirection, setDirection } from "../../helpers/Utils";
 
 class TopNav extends Component {
   constructor(props) {
     super(props);
+   
 
     this.state = {
       isInFullScreen: false,
-      searchKeyword: ""
+      searchKeyword: "",
+      imageProfile: null,
+      nameProfile: null,
+      emailProfile: "",
+      providerProfile: ""
     };
   }
+
+ 
+  componentDidMount(){
+    getCurrentUser().then(response=>{
+    this.setState({
+      imageProfile: response.imageUrl,
+      nameProfile: response.name
+    })})}
+    
+  
 
   handleChangeLocale = (locale, direction) => {
     this.props.changeLocale(locale);
@@ -169,9 +186,9 @@ class TopNav extends Component {
         document.msExitFullscreen();
       }
     }
-    this.setState({
+    this.setState={
       isInFullScreen: !isInFullScreen
-    });
+    };
   };
 
   handleLogout = () => {
@@ -200,6 +217,7 @@ class TopNav extends Component {
   render() {
     const { containerClassnames, menuClickCount, locale } = this.props;
     const { messages } = this.props.intl;
+    const{imageProfile , nameProfile ,providerProfile}=this.state;
     return (
       <nav className="navbar fixed-top">
         <div className="d-flex align-items-center navbar-left">
@@ -287,12 +305,15 @@ class TopNav extends Component {
                 )}
             </button>
           </div>
+          
           <div className="user d-inline-block">
             <UncontrolledDropdown className="dropdown-menu-right">
               <DropdownToggle className="p-0" color="empty">
-                <span className="name mr-1">Sarah Kortney</span>
+              <span className="name mr-1">{nameProfile}</span>
                 <span>
-                  <img alt="Profile" src="/assets/img/profile-pic-l.jpg" />
+              {this.state.imageProfile===null ? (<img alt="Profile" src={PROFILE_IMAGE} />) : (
+                <img alt="profile" src={this.state.imageProfile}/>
+              )}
                 </span>
               </DropdownToggle>
               <DropdownMenu className="mt-3" right>

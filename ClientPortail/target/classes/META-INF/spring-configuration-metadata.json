@@ -1,0 +1,39 @@
+{
+  "groups": [
+    {
+      "name": "app",
+      "type": "com.authgoogle.config.AppProperties",
+      "sourceType": "com.authgoogle.config.AppProperties"
+    },
+    {
+      "name": "app.auth",
+      "type": "com.authgoogle.config.AppProperties$Auth",
+      "sourceType": "com.authgoogle.config.AppProperties",
+      "sourceMethod": "public com.authgoogle.config.AppProperties.Auth getAuth() "
+    },
+    {
+      "name": "app.oauth2",
+      "type": "com.authgoogle.config.AppProperties$OAuth2",
+      "sourceType": "com.authgoogle.config.AppProperties",
+      "sourceMethod": "public com.authgoogle.config.AppProperties.OAuth2 getOauth2() "
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long",
+      "sourceType": "com.authgoogle.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.authgoogle.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.authgoogle.config.AppProperties$OAuth2"
+    }
+  ],
+  "hints": []
+}

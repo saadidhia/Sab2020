@@ -1,6 +1,6 @@
+import axios from'axios';
 export const API_BASE_URL = 'http://localhost:8080';
 export const ACCESS_TOKEN = 'accessToken';
-
 export const OAUTH2_REDIRECT_URI = 'http://localhost:3000/oauth2/redirect'
 
 export const GOOGLE_AUTH_URL = API_BASE_URL + '/oauth2/authorize/google?redirect_uri=' + OAUTH2_REDIRECT_URI;
@@ -30,12 +30,16 @@ const request = (options) => {
         })
     );
 };
-
+/*export default function getCredentials() {
+      if(localStorage.getItem(ACCESS_TOKEN)){
+          axios.get(API_BASE_URL + "/user/me")
+      }
+}*/
 export function getCurrentUser() {
     if(!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
     }
-
+    
     return request({
         url: API_BASE_URL + "/user/me",
         method: 'GET'

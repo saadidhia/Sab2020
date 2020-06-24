@@ -17,6 +17,7 @@ class OAuth2RedirectHandler extends Component {
         if(token) {
             localStorage.setItem(ACCESS_TOKEN, token);
             debugger;
+            console.log(this.props)
             return <Redirect to={{
                 pathname: "/",
                 state: { from: this.props.location }

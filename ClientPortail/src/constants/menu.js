@@ -32,6 +32,10 @@ const data = [
         icon: "simple-icon-paper-plane",
         label: "menu.second",
         to: "/app/second-menu/second"
+      }, {
+        icon: "simple-icon-paper-plane",
+        label: "menu.clients",
+        to: "/app/second-menu/clients"
       }
     ]
   },

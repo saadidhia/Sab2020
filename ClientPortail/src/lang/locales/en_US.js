@@ -63,6 +63,7 @@ module.exports = {
   "menu.second-menu": "Planification",
   "menu.second": "Planification",
   
+  "menu.clients":"Clients",
   "menu.start":"Start",
   "menu.dashboards": "Dashboards",
   "menu.default": "Default",
