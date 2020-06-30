@@ -5,6 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import com.authgoogle.model.Role;
 import com.authgoogle.model.User;
 
 import java.util.Collection;
@@ -29,17 +30,31 @@ public class UserPrincipal implements OAuth2User, UserDetails {
     }
 
     public static UserPrincipal create(User user) {
-        List<GrantedAuthority> authorities = Collections.
-                singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+    	
+        List<GrantedAuthority> authoritiesUser = Collections.
+                singletonList(new SimpleGrantedAuthority("ROLE_USER" ) ) ;
+        List<GrantedAuthority> authoritiesAdmin = Collections.
+                singletonList(new SimpleGrantedAuthority("ROLE_ADMIN" ) ) ;
+        if (user.getRole()==Role.USER) {
+        	  return new UserPrincipal(
+                      user.getId(),
+                      user.getEmail(),
+                      user.getName(),
+                      user.getPassword(),
+                       authoritiesUser
+                      
+              );	
+        }else return (new UserPrincipal(
+                      user.getId(),
+                      user.getEmail(),
+                      user.getName(),
+                      user.getPassword(),
+                       authoritiesAdmin
+                      
+              ));
 
-        return new UserPrincipal(
-                user.getId(),
-                user.getEmail(),
-                user.getName(),
-                user.getPassword(),
-                authorities
-        );
     }
+   
 
     public static UserPrincipal create(User user, Map<String, Object> attributes) {
         UserPrincipal userPrincipal = UserPrincipal.create(user);

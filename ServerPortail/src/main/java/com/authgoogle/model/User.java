@@ -17,8 +17,20 @@ public class User {
 
     @Column(nullable = false)
     private String name;
+    
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    @Email
+    public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	@Email
     @Column(nullable = false)
     private String email;
 

@@ -3,8 +3,10 @@ package com.authgoogle.payload;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import com.authgoogle.model.Role;
+
 /**
- * Created by rajeevkumarsingh on 02/08/17.
+ * Created by dhia on 15/03/20.
  */
 
 public class SignUpRequest {
@@ -21,6 +23,9 @@ public class SignUpRequest {
     public String getName() {
         return name;
     }
+    
+    
+    private Role role;
 
     public void setName(String name) {
         this.name = name;
@@ -41,4 +46,9 @@ public class SignUpRequest {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public Role getRole() {
+		// TODO Auto-generated method stub
+		return role;
+	}
 }

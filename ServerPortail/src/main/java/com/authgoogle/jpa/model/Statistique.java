@@ -14,32 +14,30 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "statistique")
-public class statistique {
+public class Statistique {
 	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id_state;
 	@Column(name="TYPE_STAT")
-	private String type_Stat;
+	private String type_stat;
 	@Column(name="PERIODE")
 	private Integer periode;
 	
 	@ManyToMany
 	private List<demande> demandes;
 	
-	public statistique () {
-		
-	}
+	public Statistique () {}
 
 
 
 
 
-	public statistique(long id_state, String type_Stat, Integer periode, List<demande> demandes) {
+	public Statistique(long id_state, String type_Stat, Integer periode, List<demande> demandes) {
 		super();
 		this.id_state = id_state;
-		this.type_Stat = type_Stat;
+		this.type_stat = type_Stat;
 		this.periode = periode;
 		this.demandes = demandes;
 	}
@@ -81,11 +79,11 @@ public class statistique {
 
 
 	public String getType_Stat() {
-		return type_Stat;
+		return type_stat;
 	}
 
 	public void setType_Stat(String type_Stat) {
-		this.type_Stat = type_Stat;
+		this.type_stat = type_Stat;
 	}
 
 	public Integer getPeriode() {
@@ -98,7 +96,7 @@ public class statistique {
 
 	@Override
 	public String toString() {
-		return "statistique [type_Stat=" + type_Stat + ", periode=" + periode + "]";
+		return "statistique [type_Stat=" + type_stat + ", periode=" + periode + "]";
 	}
 
 	@Override
@@ -106,7 +104,7 @@ public class statistique {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((periode == null) ? 0 : periode.hashCode());
-		result = prime * result + ((type_Stat == null) ? 0 : type_Stat.hashCode());
+		result = prime * result + ((type_stat == null) ? 0 : type_stat.hashCode());
 		return result;
 	}
 
@@ -118,16 +116,16 @@ public class statistique {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		statistique other = (statistique) obj;
+		Statistique other = (Statistique) obj;
 		if (periode == null) {
 			if (other.periode != null)
 				return false;
 		} else if (!periode.equals(other.periode))
 			return false;
-		if (type_Stat == null) {
-			if (other.type_Stat != null)
+		if (type_stat == null) {
+			if (other.type_stat != null)
 				return false;
-		} else if (!type_Stat.equals(other.type_Stat))
+		} else if (!type_stat.equals(other.type_stat))
 			return false;
 		return true;
 	}

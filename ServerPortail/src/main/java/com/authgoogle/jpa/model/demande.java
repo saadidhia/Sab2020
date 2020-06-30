@@ -27,7 +27,7 @@ public class demande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_DEMANDE")
-     private long id_demande ;
+     private long id_demande;
 	@Column(name="TYPE_DEMANDE")
      private char type_demande;
 	@Column(name="PRIORITE")
@@ -36,7 +36,7 @@ public class demande {
      @JoinColumn(name = "id_client", nullable = false)
      private Client client;
      @ManyToMany
-     private List<statistique> statistiques;
+     private List<Statistique> statistiques;
      
      @OneToMany
      private List<indicateur> indicateurs;
@@ -63,13 +63,13 @@ public class demande {
 
 
 
-	/*public List<statistique> getStatistiques() {
+	public List<Statistique> getStatistiques() {
 		return statistiques;
 	}
 
 
 
-	public void setStatistiques(List<statistique> statistiques) {
+	public void setStatistiques(List<Statistique> statistiques) {
 		this.statistiques = statistiques;
 	}
 
@@ -83,7 +83,7 @@ public class demande {
 
 	public void setIndicateurs(List<indicateur> indicateurs) {
 		this.indicateurs = indicateurs;
-	}*/
+	}
 
 
 
