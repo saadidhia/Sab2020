@@ -13,7 +13,9 @@ const SecondMenu = React.lazy(() =>
 const BlankPage = React.lazy(() =>
   import(/* webpackChunkName: "viwes-blank-page" */ './blank-page')
 );
-
+const Admin = React.lazy(() =>
+  import(/* webpackChunkName: "pages" */ './admin')
+);
 class App extends Component {
   render() {
     const { match } = this.props;
@@ -27,6 +29,10 @@ class App extends Component {
               <Route
                 path={`${match.url}/gogo`}
                 render={props => <Gogo {...props} />}
+              />
+              <Route
+                path={`${match.url}/admin`}
+                render={props => <Admin {...props} />}
               />
               <Route
                 path={`${match.url}/second-menu`}
