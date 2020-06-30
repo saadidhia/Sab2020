@@ -46,7 +46,7 @@ export default (state = INIT_STATE, action) => {
         case REGISTER_USER:
             return { ...state, loading: true, error: '' };
         case REGISTER_USER_SUCCESS:
-            return { ...state, loading: false, user: action.payload.uid, error: '' };
+            return { ...state, loading: false, user:action.payload.token, error: '' };
         case REGISTER_USER_ERROR:
             return { ...state, loading: false, user: '', error: action.payload.message };
         case LOGOUT_USER:

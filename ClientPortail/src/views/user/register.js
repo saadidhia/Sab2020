@@ -17,12 +17,13 @@ class Register extends Component {
     this.state = {
       email: "demo@gogo.com",
       password: "gogo123",
-      name: "Sarah Kortney"
+      name: "Sarah Kortney",
+      role:"USER"
     };
   }
   onUserRegister = (values) => {
     if (!this.props.loading) {
-      if (values.email !== "" && values.password !== "") {
+      if (values.email !== "" && values.password !== "" && values.role!=="") {
         this.props.registerUser(values, this.props.history);
       }
     }
@@ -57,6 +58,15 @@ class Register extends Component {
     return error;
   }
 
+  validateRole=(value)=>{
+    let error;
+    if(!value){
+      error="please enter your Role";
+
+    }
+  return error;
+}
+
   componentDidUpdate() {
     if (this.props.error) {
       NotificationManager.warning(
@@ -71,8 +81,8 @@ class Register extends Component {
   }
 
   render() {
-    const { password, email, name } = this.state;
-    const initialValues = {email, password, name};
+    const { password, email, name, role } = this.state;
+    const initialValues = {email, password, name ,role};
 
     return (
       <Row className="h-100">
@@ -149,6 +159,22 @@ class Register extends Component {
                         </div>
                       )}
                     </FormGroup>
+                    <FormGroup className="form-group has-float-label">
+                      <Label>
+                        <IntlMessages id="user.role" />
+                      </Label>
+                      <Field
+                        className="form-control"
+                      
+                        name="role"
+                        validate={this.validateRole}
+                      />
+                      {errors.role && touched.role && (
+                        <div className="invalid-feedback d-block">
+                          {errors.role}
+                        </div>
+                      )}
+                    </FormGroup>
                     <div className="d-flex justify-content-between align-items-center">
                     <div className="social-login">
                         <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
@@ -169,10 +195,7 @@ class Register extends Component {
                         <span className="label"><IntlMessages id="user.register-button" /></span>
                       </Button>
                     </div>
-                    <div className="social-signup">
-                      <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
-                      <img src={googleLogo} alt="Google" /> Sign up with Google</a>
-                    </div>
+                    
                   </Form>
                 )}
               </Formik>

@@ -1,3 +1,4 @@
+
 const data = [
   {
     id: "gogo",
@@ -38,19 +39,25 @@ const data = [
         to: "/app/second-menu/clients"
       }
     ]
-  },
-  {
-    id: "blankpage",
-    icon: "iconsminds-bucket",
-    label: "menu.blank-page",
-    to: "/app/blank-page"
-  },
-  {
-    id: "docs",
-    icon: "iconsminds-library",
-    label: "menu.docs",
-    to: "https://gogo-react-docs.coloredstrategies.com/",
-    newWindow:true
   }
+ 
 ];
+
+if(localStorage.getItem("Role") === "ROLE_ADMIN"){
+ //window.location.reload(true);
+  var adminpath = {
+    id: "admin",
+    icon: "iconsminds-three-arrow-fork",
+    label: "menu.administration",
+    to: "/app/admin/",
+    subs: [
+      {
+        icon: "simple-icon-paper-plane",
+        label: "menu.administration",
+        to: "/app/admin/collaborateurs"
+      }
+    ]
+  }; 
+  data.push(adminpath);
+}
 export default data;

@@ -9,7 +9,15 @@ import {API_CLIENT_ADD,API_CLIENT_GET}from '../../../constants/defaultValues'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import {
 
+  
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownItem,
+  DropdownMenu
+ 
+} from "reactstrap";
 
 export default class Client extends Component {
   constructor(props) {
@@ -84,6 +92,33 @@ console.log(e.target);
             <Row>
               <Colxx xxs="12">
                 <Breadcrumb heading="menu.second" match={this.props.match} />
+                <div className="text-zero top-right-button-container">
+              <UncontrolledDropdown>
+                <DropdownToggle
+                  caret
+                  color="primary"
+                  size="lg"
+                  outline
+                  className="top-right-button top-right-button-single">
+                  <IntlMessages id="pages.actions" />
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem header>
+                    <IntlMessages id="pages.header" />
+                  </DropdownItem>
+                  <DropdownItem disabled>
+                    <IntlMessages id="pages.delete" />
+                  </DropdownItem>
+                  <DropdownItem>
+                    <IntlMessages id="pages.another-action" />
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    <IntlMessages id="pages.another-action" />
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </div>
                 <Separator className="mb-5" />
               </Colxx>
             </Row>

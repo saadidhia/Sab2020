@@ -45,6 +45,7 @@ module.exports = {
   "user.forgot-password": "Forgot Password",
   "user.email": "E-mail",
   "user.password": "Password",
+  "user.role":"Role",
   "user.forgot-password-question": "Forget password?",
   "user.fullname": "Full Name",
   "user.login-button": "LOGIN",
@@ -150,6 +151,7 @@ module.exports = {
   "menu.layouts": "Layouts",
   "menu.validations": "Validations",
   "menu.wizard": "Wizard",
+"menu.administration":"Administration",
   
   /* 04.Dashboards */
   "dashboards.pending-orders": "Pending Orders",
@@ -215,6 +217,8 @@ module.exports = {
   "pages.status": "Status",
   "pages.cancel": "Cancel",
   "pages.submit": "Submit",
+  "pages.ajouterClient":"Ajouter un Client",
+
   "pages.delete": "Delete",
   "pages.another-action": "Another action",
   "pages.actions": "ACTIONS",

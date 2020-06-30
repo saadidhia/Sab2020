@@ -7,7 +7,7 @@ import { Formik, Form, Field } from "formik";
 import { loginUser } from "../../redux/actions";
 import { Colxx } from "../../components/common/CustomBootstrap";
 import IntlMessages from "../../helpers/IntlMessages";
-
+import LogoSAB from '../../img/LogoSAB-SBS.png'
 import googleLogo from '../../img/google-logo.png'
 import { GOOGLE_AUTH_URL } from '../../constants/defaultValues'
 
@@ -83,7 +83,8 @@ class Login extends Component {
             </div>
             <div className="form-side">
               <NavLink to={`/`} className="white">
-                <span className="logo-single" />
+                {/* <span className="logo-single" /> */}
+                <a href="/"><img alt="LogoSab" height="80" width="150" src={LogoSAB}/></a>
               </NavLink>
               <CardTitle className="mb-4">
                 <IntlMessages id="user.login-title" />

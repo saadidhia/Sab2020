@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-
+import LogoSAB from '../../img/LogoSAB-SBS.png'
 import PROFILE_IMAGE from '../../img/profileImage.png'
 import {
   UncontrolledDropdown,
@@ -191,6 +191,11 @@ class TopNav extends Component {
     };
   };
 
+  redirectProfile =()=>{
+    console.log(this.props)
+   this.props.history.push('/app/gogo/portfolio')
+
+  }
   handleLogout = () => {
     this.props.logoutUser(this.props.history);
   };
@@ -281,10 +286,11 @@ class TopNav extends Component {
           </div>
           
         </div>
-        <a className="navbar-logo" href="/">
+        {/* <a className="navbar-logo" href="/">
           <span className="logo d-none d-xs-block" />
           <span className="logo-mobile d-block d-xs-none" />
-        </a>
+        </a> */}
+           <a href="/"><img alt="LogoSab" height="80" width="150" src={LogoSAB}/></a>
         <div className="navbar-right">
           {isDarkSwitchActive && <TopnavDarkSwitch />}
 
@@ -317,7 +323,7 @@ class TopNav extends Component {
                 </span>
               </DropdownToggle>
               <DropdownMenu className="mt-3" right>
-                <DropdownItem>Account</DropdownItem>
+              <DropdownItem onClick={()=>this.redirectProfile()}>Account</DropdownItem>
                 <DropdownItem>Features</DropdownItem>
                 <DropdownItem>History</DropdownItem>
                 <DropdownItem>Support</DropdownItem>

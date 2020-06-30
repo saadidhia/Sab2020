@@ -2,7 +2,7 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 //import { auth } from '../../helpers/Firebase';
 import { login, signup } from "./auth"
-
+import axios from 'axios'
 import { ACCESS_TOKEN } from '../../constants/defaultValues'
 
 import {
@@ -47,15 +47,21 @@ function* loginWithEmailPassword({ payload }) {
             "email": email, 
             "password": password
         }) 
-        // Hard coded values smell. But this should do it. 
-        console.log(loginUser);
+        debugger;
+        // Hard coded values smell. But this should do it.
+        console.log(loginUser.user) 
+       /// console.log(loginUser.user.authorities[0].authority);
         if (!loginUser.message) {
            // localStorage.setItem('user_id', loginUser.user.uid);
             localStorage.setItem(ACCESS_TOKEN, loginUser.accessToken);
-            localStorage.setItem('tokenType',loginUser.tokenType)
+           // localStorage.setItem('tokenType',loginUser.tokenType)
+            localStorage.setItem('Role' ,loginUser.user.authorities[0].authority)
             yield put(loginUserSuccess(loginUser.user));
+            console.log(loginUser.user)
+           
             
             history.push('/');
+            window.location.reload(true);
         } else {
             yield put(loginUserError(loginUser.message));
         }
@@ -79,21 +85,29 @@ const registerWithEmailPasswordAsync = async (email, password) =>
 
 function* registerWithEmailPassword({ payload }) {
     debugger;
-    const { email, password, name } = payload.user;
+    const { email, password, name, role } = payload.user;
     const { history } = payload
+    console.log(payload.user)
     try {
         const registerUser = yield call(signup , { 
             "email": email,
             "password": password,
-            "name": name
+            "name": name,
+             "role": role 
         });
+        console.log(role)
 
         if (!registerUser.message) {
-            localStorage.setItem('user_id', registerUser.user.uid);
-            localStorage.setItem(ACCESS_TOKEN, registerUser.token);
+           // localStorage.setItem('user_id', registerUser.user.uid);
+           // localStorage.setItem(ACCESS_TOKEN, registerUser.token);
             yield put(registerUserSuccess(registerUser.user));
-            yield put(loginUserSuccess(registerUser.user));
-            history.push('/')
+           // yield put(loginUserSuccess(registerUser.user));
+           console.log("this user is added")
+           axios.post("http://localhost:8080/feedback",{"name":name,"password":password,"email":email}).then(
+               response=>{console.log(response)
+               })
+           
+            history.push('/user/login')
         } else {
             yield put(registerUserError(registerUser.message));
         }
@@ -119,9 +133,11 @@ function* logout({ payload }) {
     const { history } = payload
     try {
         // yield call(logoutAsync, history);
-     //   localStorage.removeItem('user_id');
+        localStorage.removeItem('user_id');
        // localStorage.removeItem('token');
         localStorage.removeItem(ACCESS_TOKEN);
+        localStorage.removeItem('Role')
+
         history.push('/user/login')
     } catch (error) {
     }
